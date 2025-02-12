@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import Image
 from PIL import ImageTk
+import os
 
 
 class App(tk.Tk):
@@ -112,5 +113,6 @@ class App(tk.Tk):
 
 if __name__ == "__main__":
     app = App()
-    app.iconbitmap("r.ico")
+   # icon_path = os.path.join(os.path.dirname(__file__), "robot.ico")
+   # app.iconbitmap(icon_path)
     app.mainloop()
