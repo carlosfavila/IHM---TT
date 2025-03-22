@@ -23,7 +23,7 @@ class App(tk.Tk):
         header_frame.pack(pady=0)
 
         img1 = Image.open("ipn.png")
-        img1 = img1.resize((60, 80))
+        img1 = img1.resize((100, 120))
         img1 = ImageTk.PhotoImage(img1)
         img_label1 = tk.Label(header_frame, image=img1, background="#051d40")
         img_label1.image = img1
@@ -31,16 +31,16 @@ class App(tk.Tk):
 
         # Frame para los textos (Título y Subtítulo)
         text_frame = tk.Frame(header_frame, bg="#051d40")
-        text_frame.pack(side=tk.LEFT, padx=20)
+        text_frame.pack(side=tk.LEFT, padx=24)
 
-        header_label = tk.Label(text_frame, text="Brazo robótico orientado a auxiliar seres humanos en la exploración planetaria", font=("Montserrat", 24), bg="#051d40", fg="#ffffff")
+        header_label = tk.Label(text_frame, text="Brazo robótico orientado a auxiliar seres humanos en la exploración planetaria", font=("Montserrat", 28), bg="#051d40", fg="#ffffff")
         header_label.pack()
 
-        subtitle_label = tk.Label(text_frame, text="UPIITA - IPN", font=("Montserrat", 16), bg="#051d40", fg="#ffffff")
+        subtitle_label = tk.Label(text_frame, text="UPIITA - IPN", font=("Montserrat", 20), bg="#051d40", fg="#ffffff")
         subtitle_label.pack()
 
         img2 = Image.open("UPIITA.png")
-        img2 = img2.resize((80, 80))
+        img2 = img2.resize((100, 100))
         img2 = ImageTk.PhotoImage(img2)
         img_label2 = tk.Label(header_frame, image=img2, background="#051d40")
         img_label2.image = img2
@@ -48,7 +48,7 @@ class App(tk.Tk):
 
         # Imagen izquierda
         left_img = Image.open("k.jpg")
-        left_img = left_img.resize((800, 600))
+        left_img = left_img.resize((1100, 800))
         left_img = ImageTk.PhotoImage(left_img)
         left_img_label = tk.Label(self, image=left_img, borderwidth=0)
         left_img_label.image = left_img
@@ -61,7 +61,7 @@ class App(tk.Tk):
         # Estilo para botones ttk
         style = ttk.Style()
         style.theme_use("clam")
-        style.configure("TButton", background="#104ba3", foreground="#ffffff", font=("Montserrat", 12), borderwidth=0, width=30)
+        style.configure("TButton", background="#104ba3", foreground="#ffffff", font=("Montserrat", 18), borderwidth=0, width=40)
         style.map("TButton", background=[("active", "#65a3ff")])
 
         btn1 = ttk.Button(button_frame, text="CARGAR", command=self.show_screen1)
@@ -120,7 +120,7 @@ class App(tk.Tk):
 
        # Imagen izquierda
         left_img = Image.open("k.jpg")
-        left_img = left_img.resize((800, 600))
+        left_img = left_img.resize((1100, 800))
         left_img = ImageTk.PhotoImage(left_img)
         left_img_label = tk.Label(self, image=left_img, borderwidth=0)
         left_img_label.image = left_img
