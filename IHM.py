@@ -159,5 +159,5 @@ class App(tk.Tk):
 if __name__ == "__main__":
     app = App()
     icon_path = os.path.join(os.path.dirname(__file__), "robot.ico")
-    app.iconbitmap(icon_path)
+#    app.iconbitmap(icon_path)
     app.mainloop()
