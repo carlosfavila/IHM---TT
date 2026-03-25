@@ -133,6 +133,22 @@ class App(tk.Tk):
 
         return ok
 
+    def _send_home(self):
+        """Envía el comando HOME para regresar todos los motores a 0°."""
+        if self.radio is None:
+            print("HOME: radio no disponible")
+            return False
+        with self.radio_lock:
+            self.radio.stopListening()
+            time.sleep(0.01)
+            self.radio.flush_tx()
+            ok = self.radio.write(b"HOME")
+            print(f"[{time.strftime('%H:%M:%S')}] => TX HOME (ok={ok})")
+            time.sleep(0.01)
+            self.radio.flush_rx()
+            self.radio.startListening()
+        return ok
+
     def create_main_menu(self):
         # Limpiar la ventana
         for widget in self.winfo_children():
@@ -196,8 +212,8 @@ class App(tk.Tk):
         self.show_screen("MANUAL")
 
     def create_manual_controls(self, parent_frame):
-        # Configurar 6 filas para los 6 grados de libertad
-        for i in range(6):
+        # Configurar 7 filas: 6 GDL + 1 HOME
+        for i in range(7):
             parent_frame.grid_rowconfigure(i, weight=1)
         for j in range(3):
             parent_frame.grid_columnconfigure(j, weight=1)
@@ -241,6 +257,21 @@ class App(tk.Tk):
             btn_mas["borderwidth"] = 0
             btn_mas["activebackground"] = "#65a3ff"
             btn_mas.grid(row=i, column=2, padx=10, pady=10, sticky="w")
+
+        # Botón HOME - fila 6, ocupa las 3 columnas
+        btn_home = tk.Button(
+            parent_frame,
+            text="HOME",
+            width=12,
+            height=1,
+            bg="#c71414",
+            fg="#ffffff",
+            font=("Montserrat Bold", 16),
+            command=self._send_home
+        )
+        btn_home["borderwidth"] = 0
+        btn_home["activebackground"] = "#ff4444"
+        btn_home.grid(row=6, column=0, columnspan=3, padx=10, pady=10)
 
     def on_manual_click(self, grado, direccion):
         # vector de 6 valores: 1 si aumenta, -1 si disminuye, 0 si no aplica
